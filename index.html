@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task</title>
+</head>
+<body>
+    <form action="" id="task-form">
+        <input type="text" id="task-input", placeholder="Task">
+        <label for="task-input">Add Task</label>
+        <button id="task-button">Add</button>
+        <ul id="tasks"></ul>
+    </form>
+    <script>
+        // declaring variables for the form data
+        const taskForm = document.getElementById("task-form");
+        const taskInput = document.getElementById("task-input");
+        const taskButton = document.getElementById("task-button");
+        const tasks = document.getElementById("tasks");
+        // declaring variable for the store task
+        let storedTask = [];
+        //adding an eventlistener to the form
+        taskForm.addEventListener("submit", (el) => {
+            el.preventDefault();
+            const task = document.createElement("li")
+            task.innerHTML = taskInput.value;
+            tasks.appendChild(task);
+            tasks.push(taskInput.value);
+            taskInput.value = "";
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+        })
+    </script>
+</body>
+</html>
